@@ -1,0 +1,66 @@
+[
+    {
+        "model":"users.Skills",
+        "pk":1 , 
+        "fields":{
+        "name":"Python3",
+        "description":"Lenguaje de programación interpretado orientado a objetos",
+        "pt":94 }
+    },{
+        "model":"users.Skills",
+        "pk":2 , 
+        "fields":{
+        "name":"Django",
+        "description":"Framework de desarrollo de aplicaciones webs",
+        "pt":85}
+    },
+    {
+        "model":"users.Skills",
+        "pk":3 , 
+        "fields":{
+        "name":"Django Rest Framework",
+        "description":"Framework de desarrollo de rest api's usando django y python ",
+        "pt":79
+        }
+    }, {
+        "model":"users.Skills",
+        "pk": 4,
+        "fields":{
+        "name": "Pandas",
+        "description": "Libreria de python para el analisis de datos",
+        "pt": 75}
+    },
+    {
+        "model":"users.Skills",
+        "id": 5,
+        "fields":{
+        "name": "Numpy",
+        "description": "Libreria para calculos complejos con arrays y matrices",
+        "pt": 75}
+    },
+    {
+        "model":"users.Skills",
+        "id": 6,
+        "fields":{
+        "name": "Golang",
+        "description": "Lenguaje de programacion  compilado",
+        "pt": 70}
+
+    },
+    {
+        "model":"users.Skills",
+        "id": 7,
+        "fields":{
+        "name": "Redis",
+        "description": "Base de datos en ram",
+        "pt": 40}
+    },
+    {
+        "model":"users.Skills",
+        "id": 8,
+        "fields":{
+        "name": "Postgresql",
+        "description": "Base de datos SQL  de alto rendimiento",
+        "pt": 70}
+    }
+]

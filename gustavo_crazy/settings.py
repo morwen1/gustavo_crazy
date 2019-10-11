@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+LOCAL =[
+    'apps.users',
+    'apps.api_users',
+]
+
+THIRD_PARTY =[
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt'
+    ]
+
+
+INSTALLED_APPS = DJANGO+LOCAL+THIRD_PARTY 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,10 +64,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'gustavo_crazy.urls'
 
+AUTH_USER_MODEL="users.Users"
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,3 +133,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+
+
+INSTALLED_APPS 
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',        
+
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+}
