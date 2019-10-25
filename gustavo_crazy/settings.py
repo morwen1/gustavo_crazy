@@ -41,19 +41,25 @@ DJANGO = [
 LOCAL =[
     'apps.users',
     'apps.api_users',
+    'apps.chat',
 ]
 
 THIRD_PARTY =[
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+    'django_redis',
+    'channels',
     ]
 
 
 INSTALLED_APPS = DJANGO+LOCAL+THIRD_PARTY 
 
+ASGI_APPLICATION = 'gustavo_crazy.routing.application'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -82,7 +88,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'gustavo_crazy.wsgi.application'
+
+
+WEB_CONCURRENCY=4
 
 
 # Database
@@ -94,6 +102,37 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+#CACHE
+# ------------------------------------------------------------------------------
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": 'redis://127.0.0.1:6379/1',
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            # Mimicing memcache behavior.
+            # http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior
+            "IGNORE_EXCEPTIONS": True,
+        },
+        "KEY_PREFIX": "example",
+    }
+}
+CACHE_TTL = 60 * 1
+
+redis_host = ('localhost')
+
+CHANNEL_LAYERS = {
+    "default": {
+        # This example app uses the Redis channel layer implementation asgi_redis
+        "BACKEND": "channels_redis.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(redis_host, 6379)],
+        },
+       "ROUTING": "gustavo_crazy.routing.channel_routing", # We will create it in a moment
+    },
+}
+
 
 
 # Password validation

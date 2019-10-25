@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 #Serializers
-from apps.ap_users.serializers import UsersSerializer , UsersLoginSerializer , UserSignupSerializer
+from apps.api_users.serializers import UsersSerializer , UsersLoginSerializer , UserSignupSerializer
 
 #Models
 from apps.users.models import Users
@@ -35,4 +35,3 @@ class UserList (GenericViewSet,mixins.ListModelMixin , mixins.RetrieveModelMixin
         user=serializer.save()
         return Response(UsersSerializer(user).data , 200)
             
-]

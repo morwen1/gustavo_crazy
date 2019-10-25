@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.urls import path , include
 from apps.api_users import urls as urls_api
 from apps.monolitic_page import urls as urls_site
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/',include(urls_api)),
-    path('site/', include(urls_site))
+    path('site/', include(urls_site)),
+    path('chat/', include('apps.chat.urls')),
 ]

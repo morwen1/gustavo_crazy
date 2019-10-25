@@ -1,3 +1,6 @@
+#Django
+from django.utils.decorators import method_decorator 
+from django.views.decorators.cache import cache_page
 #Models
 from apps.users.models import CV , Skills ,  PersonalRef 
 
@@ -9,6 +12,9 @@ from rest_framework.response import Response
 #Serializers
 from apps.api_users.serializers import CvSerializer , SkillSerializer ,PersonalRefSerializer
 
+
+
+
 class CViewset(ReadOnlyModelViewSet ):
     """
         Viewset for my cv list the skills,
@@ -16,7 +22,7 @@ class CViewset(ReadOnlyModelViewSet ):
     """
     queryset = CV.objects.all()
     serializer_class =CvSerializer
-
+    @method_decorator(cache_page(60*3))
     @action(detail=True , methods = ['get'])
     def skills (self,request,pk=None):
         """

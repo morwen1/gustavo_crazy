@@ -9,6 +9,8 @@ from apps.api_users.serializers import ProfileSerializer
 from apps.api_users.models import CommentSkill 
 from apps.users.models import Users, Profile ,CV
 
+
+
 class CommentsSerializers(serializers.ModelSerializer):
     coments = RecursiveField(many=True , allow_null=True)
     class Meta:

@@ -117,7 +117,7 @@
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
                     <li>
-                        <a href="/static/pdfs/my-cv.pdf">CV pdf</a>
+                        <a href="/static/pdfs/my-cv.pdf" >CV pdf</a>
                     </li>
 
 
@@ -176,7 +176,7 @@
                 <!--/ Carousel item end -->
 
                 <div class="item">
-                    <img class="img-responsive" src="/static/images//ciberseguridad.jpg"
+                    <img class="img-responsive" src="/static/images/ciberseguridad.jpg"
                         style=" width :125% ; height:125%;  " alt="slider">
                     <div class="slider-content">
                         <div class="col-md-12 text-center">
@@ -220,28 +220,7 @@
 
                         </div>
                     </div>
-                </div><!-- /.col-md-3 
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="feature">
-                        <i class="fa fa-snake"></i>
-                        <div class="feature-content">
-                            <h4>Graphics Design</h4>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                                nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-                        </div>
-                    </div>
-                </div>-->
-                <!-- 
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="feature">
-                        <i class="fa fa-wordpress"></i>
-                        <div class="feature-content">
-                            <h4>Wordpress Theme</h4>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                                nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-                        </div>
-                    </div>
-                </div>/.col-md-3 -->
+                </div>
                 <div class="col-lg-6 col-md-3 col-sm-6 col-xs-12">
                     <div class="feature">
                         <i class="fa fa-plug"></i>
@@ -457,106 +436,18 @@
                     <div class="skill-shortcode">
 
                         <!-- Progress Bar -->
+                        {%for i in skills%}
                         <div class="skill">
-                            <p style=" color: #28ABE3;">Web Design</p>
+                            <p style=" color:#28ABE3;">{{i.name}}</p>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" data-percentage="50">
-                                    <span class="progress-bar-span">50%</span>
-                                    <span class="sr-only">50% Complete</span>
+                                <div class="progress-bar" role="progressbar" data-percentage="{{i.pt}}">
+                                    <span class="progress-bar-span">{{i.pt}}%</span>
+                                    <span class="sr-only">{{i.pt}}% Complete</span>
                                 </div>
                             </div>
                         </div>
+                        {%endfor%}
 
-                        <!-- Progress Bar -->
-                        <div class="skill">
-                            <p style=" color: #28ABE3;">HTML & CSS</p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" data-percentage="48">
-                                    <span class="progress-bar-span">48%</span>
-                                    <span class="sr-only">48% Complete</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Progress Bar -->
-                        <div class="skill">
-                            <p style=" color: #28ABE3;">Postgres</p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" data-percentage="60">
-                                    <span class="progress-bar-span">70%</span>
-                                    <span class="sr-only">70% Complete</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Progress Bar -->
-                        <div class="skill">
-                            <p style=" color: #28ABE3;">Python3</p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" data-percentage="85">
-                                    <span class="progress-bar-span">85%</span>
-                                    <span class="sr-only">85% Complete</span>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- Progress Bar -->
-                        <div class="skill">
-                            <p style=" color: #28ABE3;">Javascript</p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" data-percentage="60">
-                                    <span class="progress-bar-span">60%</span>
-                                    <span class="sr-only">60% Complete</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Progress Bar -->
-                        <div class="skill">
-                            <p style=" color: #28ABE3;">GO</p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" data-percentage="70">
-                                    <span class="progress-bar-span">70%</span>
-                                    <span class="sr-only">70% Complete</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Progress Bar -->
-                        <div class="skill">
-                            <p style=" color: #28ABE3;">Haskell</p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" data-percentage="40">
-                                    <span class="progress-bar-span">40%</span>
-                                    <span class="sr-only">40% Complete</span>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <!-- Progress Bar -->
-                        <div class="skill">
-                            <p style=" color: #28ABE3;">Pentesting</p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" data-percentage="60">
-                                    <span class="progress-bar-span">60%</span>
-                                    <span class="sr-only">60% Complete</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Progress Bar -->
-                        <div class="skill">
-                            <p style=" color: #28ABE3;">Machine Learning</p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" data-percentage="40">
-                                    <span class="progress-bar-span">40%</span>
-                                    <span class="sr-only">40% Complete</span>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
