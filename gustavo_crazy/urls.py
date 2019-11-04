@@ -22,8 +22,8 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/',include(urls_api)),
-    path('site/', include(urls_site)),
-    path('chat/', include('apps.chat.urls')),
+    path('', include(urls_site)), #landing page
+    path('admin/', admin.site.urls),#admin page
+    path('api/v1/',include(urls_api)),#public api
+    path('chat/', include('apps.chat.urls')), #testing realtime chat
 ]

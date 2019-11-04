@@ -9,7 +9,8 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-#Serializers
+#Serializers1:M 25 Oct 13:15:08.475 * The server is now ready to accept connections on port 6379
+
 from apps.api_users.serializers import CvSerializer , SkillSerializer ,PersonalRefSerializer
 
 
@@ -32,7 +33,7 @@ class CViewset(ReadOnlyModelViewSet ):
         skills = cv.skills.all()
         serializer = SkillSerializer(skills , many=True)
         return Response(data=serializer.data  ,status= 200)
-    
+    @method_decorator(cache_page(60*3))
     @action(detail=True , methods=['get'])
     def refper(self, request, pk=None):
         """

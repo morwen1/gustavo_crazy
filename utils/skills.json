@@ -31,8 +31,9 @@
         "pt": 75}
     },
     {
+
         "model":"users.Skills",
-        "id": 5,
+        "pk": 5,
         "fields":{
         "name": "Numpy",
         "description": "Libreria para calculos complejos con arrays y matrices",
@@ -40,7 +41,7 @@
     },
     {
         "model":"users.Skills",
-        "id": 6,
+        "pk": 6,
         "fields":{
         "name": "Golang",
         "description": "Lenguaje de programacion  compilado",
@@ -49,7 +50,7 @@
     },
     {
         "model":"users.Skills",
-        "id": 7,
+        "pk": 7,
         "fields":{
         "name": "Redis",
         "description": "Base de datos en ram",
@@ -57,7 +58,7 @@
     },
     {
         "model":"users.Skills",
-        "id": 8,
+        "pk": 8,
         "fields":{
         "name": "Postgresql",
         "description": "Base de datos SQL  de alto rendimiento",
