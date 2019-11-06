@@ -5,12 +5,26 @@ from django.views.decorators.cache import cache_page
 from apps.users.models import Profile , CV
 #from django.views.generic import TemplateView , ListView
 
+
+
+
 @cache_page(60*30)
 def TemporalyView(request) :
+    """
+    falta:
+        -obtener ultimos 10 post de linkedin
+        -obtener ultimos 10 post de instagram
+        -obtener los proyectos de github
+        -ordenar mejor las urls de la api pública
+        -logos de github y de todas mis skills
+    """
+
 
     profile=Profile.objects.get(is_cv_porter=True)
     cv = CV.objects.get(profile=profile)
     context = {
+        #'posts':get_posts(),
+        #
         'profile':profile,
         'cv':cv ,
         'skills':cv.skills.all(),
