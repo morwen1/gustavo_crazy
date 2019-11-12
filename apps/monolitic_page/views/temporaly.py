@@ -4,11 +4,11 @@ from django.views.decorators.cache import cache_page
 #models
 from apps.users.models import Profile , CV
 #from django.views.generic import TemplateView , ListView
+from utils.peticiones.github import obtain_repos
 
 
 
-
-@cache_page(60*30)
+#@cache_page(60*30)
 def TemporalyView(request) :
     """
     falta:
@@ -25,9 +25,11 @@ def TemporalyView(request) :
     context = {
         #'posts':get_posts(),
         #
+        'repos':obtain_repos,
         'profile':profile,
         'cv':cv ,
         'skills':cv.skills.all(),
+
         
         
     }

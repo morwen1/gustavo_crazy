@@ -255,7 +255,7 @@
 
 
     <!-- Start Portfolio Section -->
-    <section id="portfolio" class="portfolio-section-1">
+    <section id="latest-news" class="latest-news-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -266,80 +266,27 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-
+                <div class="latest-news">
+                    
                     <!-- Start Portfolio items -->
-                    <ul id="portfolio-list">
-                        <li>
+                    
+                        {%for repo in repos%}
+                        <div class="col-md-12"> 
                             <div class="portfolio-item">
-                                <img src="/static/images/portfolio/admin_diplo_img/admin_diplo_1.png"
+                                <img src="/static/images/github.svg"
                                     class="img-responsive" alt="" />
                                 <div class="portfolio-caption">
-                                    <h4>Administracion simple de diplomados </h4>
+                                    <h4>{{repo.name}} </h4>
                                     <a href="#portfolio-modal" data-toggle="modal" class="link-1"><i
                                             class="fa fa-magic"></i></a>
-                                    <a href="/apps/portfolio1" class="link-2"><i class="fa fa-link"></i></a>
+                                    <a href="{{repo.html_url}}" class="link-2"><i class="fa fa-link"></i></a>
                                 </div>
                             </div>
-                        </li>
-                        <li>
-                            <div class="portfolio-item">
-                                <img src="/static/images/portfolio/img2.jpg" class="img-responsive" alt="" />
-                                <div class="portfolio-caption">
-                                    <h4>Portfolio Title</h4>
-                                    <a href="#portfolio-modal" data-toggle="modal" class="link-1"><i
-                                            class="fa fa-magic"></i></a>
-                                    <a href="#" class="link-2"><i class="fa fa-link"></i></a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="portfolio-item">
-                                <img src="/static/images/portfolio/img3.jpg" class="img-responsive" alt="" />
-                                <div class="portfolio-caption">
-                                    <h4>Portfolio Title</h4>
-                                    <a href="#portfolio-modal" data-toggle="modal" class="link-1"><i
-                                            class="fa fa-magic"></i></a>
-                                    <a href="#" class="link-2"><i class="fa fa-link"></i></a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="portfolio-item">
-                                <img src="/static/images/portfolio/img4.jpg" class="img-responsive" alt="" />
-                                <div class="portfolio-caption">
-                                    <h4>Portfolio Title</h4>
-                                    <a href="#portfolio-modal" data-toggle="modal" class="link-1"><i
-                                            class="fa fa-magic"></i></a>
-                                    <a href="#" class="link-2"><i class="fa fa-link"></i></a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="portfolio-item">
-                                <img src="/static/images/portfolio/img5.jpg" class="img-responsive" alt="" />
-                                <div class="portfolio-caption">
-                                    <h4>Portfolio Title</h4>
-                                    <a href="#portfolio-modal" data-toggle="modal" class="link-1"><i
-                                            class="fa fa-magic"></i></a>
-                                    <a href="#" class="link-2"><i class="fa fa-link"></i></a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="portfolio-item">
-                                <img src="/static/images/portfolio/img6.jpg" class="img-responsive" alt="" />
-                                <div class="portfolio-caption">
-                                    <h4>Portfolio Title</h4>
-                                    <a href="#portfolio-modal" data-toggle="modal" class="link-1"><i
-                                            class="fa fa-magic"></i></a>
-                                    <a href="#" class="link-2"><i class="fa fa-link"></i></a>
-                                </div>
-                            </div>
-                        </li>
-
-
-                    </ul>
+                        
+                        
+                    </div>
+                    {%endfor%}
+                    </div>
                     <!-- End Portfolio items -->
                 </div>
             </div>

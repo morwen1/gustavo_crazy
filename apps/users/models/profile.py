@@ -2,6 +2,9 @@ from django.db import models
 
 
 
+
+
+
 class Profile ( models.Model ):
     user = models.OneToOneField(to ='users.Users' ,on_delete=models.CASCADE, unique=True)
     age = models.SmallIntegerField()

@@ -9,9 +9,9 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-#Serializers1:M 25 Oct 13:15:08.475 * The server is now ready to accept connections on port 6379
-
 from apps.api_users.serializers import CvSerializer , SkillSerializer ,PersonalRefSerializer
+
+
 
 
 
