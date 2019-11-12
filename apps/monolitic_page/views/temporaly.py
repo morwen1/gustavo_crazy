@@ -8,7 +8,7 @@ from utils.peticiones.github import obtain_repos
 
 
 
-#@cache_page(60*30)
+@cache_page(60*30)
 def TemporalyView(request) :
     """
     falta:
@@ -25,7 +25,7 @@ def TemporalyView(request) :
     context = {
         #'posts':get_posts(),
         #
-        'repos':obtain_repos,
+        'repos':obtain_repos(),
         'profile':profile,
         'cv':cv ,
         'skills':cv.skills.all(),
