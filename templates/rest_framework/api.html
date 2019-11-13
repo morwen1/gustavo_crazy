@@ -1,0 +1,44 @@
+{% extends "rest_framework/base.html" %}
+
+{%load staticfiles%}
+
+{% block title%}
+Morwen-api
+{%endblock%}
+
+{% block style %}
+
+<link rel="stylesheet" type="text/css" href="{% static "rest_framework/css/prettify.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "rest_framework/css/default.css" %}" />
+<link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="/static/css/color/blue.css" title="blue">
+<link href="/static/asset/css/bootstrap.min.css" rel="stylesheet">
+
+
+<link href="/static/css/style.css" rel="stylesheet">
+<link href="/static/css/responsive.css" rel="stylesheet">
+{% block bootstrap_theme %}
+<link rel="stylesheet" type="text/css" href="{% static "rest_framework/css/bootstrap.min.css" %}" />
+{% endblock %}
+
+<style>
+    .navbar-default .navbar-brand:hover,
+    .navbar-default .navbar-brand:focus,
+    .navbar-default .navbar-brand:active,
+    .navbar-default .navbar-brand.active {
+        color: #28ABE3;
+    }
+</style>
+
+{% endblock %}
+
+
+
+
+{%block branding%}
+<a class="navbar-brand page-scroll" href="/api/v1/cv/">Morwen-api</a>
+
+{% endblock %}
+
+
+{% block bootstrap_navbar_variant %}navbar navbar-shrink navbar-default {% endblock %}

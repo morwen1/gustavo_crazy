@@ -22,10 +22,14 @@ def TemporalyView(request) :
 
     profile=Profile.objects.get(is_cv_porter=True)
     cv = CV.objects.get(profile=profile)
+    try:
+        repos=obtain_repos()
+    except:
+        repos={}
     context = {
         #'posts':get_posts(),
         #
-        'repos':obtain_repos(),
+        'repos':repos,
         'profile':profile,
         'cv':cv ,
         'skills':cv.skills.all(),
