@@ -272,14 +272,14 @@
                     
                         {%for repo in repos%}
                         <div class="col-md-12"> 
-                            <div class="portfolio-item">
+                            <div class="portfolio-item" >
                                 <img src="/static/images/github.svg"
                                     class="img-responsive" alt="" />
                                 <div class="portfolio-caption">
                                     <h4>{{repo.name}} </h4>
-                                    <a href="#portfolio-modal" data-toggle="modal" class="link-1"><i
+                                   <a href="#portfolio-modal-{{repo.id}}" data-toggle="modal" class="link-1"><i
                                             class="fa fa-magic"></i></a>
-                                    <a href="{{repo.html_url}}" class="link-2"><i class="fa fa-link"></i></a>
+                                    <a href="{{repo.html_url}}" class="link-2" target="_blank"><i class="fa fa-link"></i></a>
                                 </div>
                             </div>
                         
@@ -295,8 +295,10 @@
     <!-- End Portfolio Section -->
 
     <!-- Start Portfolio Modal Section -->
-    <div class="section-modal modal fade" id="portfolio-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
+    {%for desc in repos%}
+    <div class="section-modal modal fade " id="portfolio-modal-{{desc.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content  ">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
                     <div class="rl">
@@ -304,26 +306,25 @@
                 </div>
             </div>
 
-            <div class="container">
+            <div class="modal-body ">
                 <div class="row">
                     <div class="section-title text-center">
-                        <h3>Portfolio Details</h3>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate</p>
+                        <h3>Detalles {{desc.name}}</h3>
+                        <p></p>
                     </div>
                 </div>
                 <div class="row">
 
-                    <div class="col-md-6">
-                        <img src="images/portfolio/img1.jpg" class="img-responsive" alt="..">
-                    </div>
-                    <div class="col-md-6">
-                        <img src="images/portfolio/img1.jpg" class="img-responsive" alt="..">
+                    <div class="">
+                        <h3>{{desc.description}}</h3>
                     </div>
 
                 </div><!-- /.row -->
             </div>
         </div>
     </div>
+    </div>
+    {%endfor%}
     <!-- End Portfolio Modal Section -->
 
 
@@ -757,19 +758,19 @@
                         <h3>urls :</h3> <br>
                         <div class="row">
                             <div class="col-lg-6">
-                                <h4> /api/v1/cv/</h4> mi cv en json
-
+                                <h4><a href="/api/v1/cv/" target="_blank">/api/v1/cv/</a> </h4> mi cv en json
+                                
                                 Usando relaciones entre serializers ya que un field puede ser un serializer en django,
                                 eso me da la posibilidad de hacer relaciones complejas
                                 se pueden listar los skills y las referencias personales por separado
                                 tambien existe una url donde se pueden ver y buscar skills en especifico :
-                                <h4>/api/v1/cv/1/skills2</h4>
+                                <h4> <a href="/api/v1/cv/1/skills2" target="_blank">/api/v1/cv/1/skills2</a> </h4>
                                 <br>
                                 en esta url podemos experimentar con ordering y filters.
                                 
                             </div>
                             <div class="col-lg-6">
-                                <h4>/api/v1/cv/comments/</h4>
+                                <h4><a href="/api/v1/cv/comments/" target="_blank">/api/v1/cv/comments/</a> </h4>
                                 <p>
                                     Este url tiene la particularidad de que utilizé un modelo con relacion recursiva y
                                     un serializer recursivo ,
@@ -784,20 +785,20 @@
 
                             </div>
                             <div class="col-lg-6">
-                                <h4>/api/v1/cv/login</h4>
+                                <h4><a href="/api/v1/cv/login" target="_blank">/api/v1/cv/login</a> </h4>
                                 <p>
                                     Login sencillo con un token almacenado en la dtb solo funciona si el usuario obviamente ya esta registrado
                                 </p>
                             </div>
                             <div class="col-lg-6">
-                                <h4>/api/v1/cv/signup</h4>
+                                <h4><a href="/api/v1/cv/signup" target="_blank">/api/v1/cv/signup</a></h4>
                                 <p>
                                     El registro de usuarios funciona claro llenando los datos que solicito y cuando el usuario se registra edite la funcion <strong>create()</strong> para 
                                     crear de una vez el perfil del usuario vacio
                                 </p>
                             </div>
                             <div class="col-lg-6">
-                                <h4>/api/v1/cv/profiles/</h4>
+                                <h4><a href="/api/v1/cv/profiles/" target="_blank">/api/v1/cv/profiles/</a> </h4>
                                 <p>la seccion de update del perfil que ya existe a nombre del usuario 
                                     registrado anteriormente , tambien pueden listar los perfiles , pero no pueden editar ningun otro perfil que no sea el propio
                                 </p>
