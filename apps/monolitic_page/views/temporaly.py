@@ -4,7 +4,7 @@ from django.views.decorators.cache import cache_page
 #models
 from apps.users.models import Profile , CV
 #from django.views.generic import TemplateView , ListView
-from utils.peticiones.github import obtain_repos
+from utils.peticiones.github import obtain_data
 
 
 
@@ -22,14 +22,11 @@ def TemporalyView(request) :
 
     profile=Profile.objects.get(is_cv_porter=True)
     cv = CV.objects.get(profile=profile)
-    try:
-        repos=obtain_repos()
-    except:
-        repos={}
+    
     context = {
         #'posts':get_posts(),
         #
-        'repos':repos,
+        'repos':obtain_data(),
         'profile':profile,
         'cv':cv ,
         'skills':cv.skills.all(),
