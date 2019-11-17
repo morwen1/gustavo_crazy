@@ -68,7 +68,7 @@ class ReferOwnerVieset(IsAuthenticated,viewsets.ModelViewSet):
 
 class ExperiencesOwnerViewset(IsAuthenticated , viewsets.ModelViewSet):
     """
-        this viewsets is for operations in Experiences
+        this viewsets is for operations in Experiences only for admin user
     """
     
     

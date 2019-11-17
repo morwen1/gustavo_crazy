@@ -1,6 +1,6 @@
 from apps.users.models import Profile ,Users
 from rest_framework.authtoken.models import Token
-
+from rest_framework.validators import UniqueValidator
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 from django.contrib.auth import password_validation, authenticate
@@ -25,14 +25,14 @@ class UsersSerializer(ModelSerializer):
 class UserSignupSerializer(serializers.Serializer):
     """
          SERIALIZER FOR REGISTER USERS
+         email is unique, pasword_verif and password equals
     """
-    email = serializers.EmailField()
+    email = serializers.EmailField(validators=[UniqueValidator(queryset=Users.objects.all() ,message='email wrong , in use or not permited'),])
     username = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=255)
     password_verif = serializers.CharField(max_length = 255)
-    first_name =  serializers.CharField(max_length=255)
-    last_name = serializers.CharField(max_length=255)
-    age = serializers.IntegerField()
+    first_name =  serializers.CharField(max_length=255 , required=True)
+    last_name = serializers.CharField(max_length=255 , required=True)
     def validate (self , data):
         passwd = data['password']
         password_verif = data['password_verif']
@@ -41,6 +41,10 @@ class UserSignupSerializer(serializers.Serializer):
         else:
             password_validation.validate_password(passwd)
         return data
+    
+        
+
+
 
     def create(self , data):
         data.pop('password_verif')
@@ -53,7 +57,7 @@ class UserSignupSerializer(serializers.Serializer):
         Profile.objects.create(user=user,
                 is_cv_porter=False,
                 is_admin=False ,
-                age=age
+                
                 )
         return user
     

@@ -1,21 +1,38 @@
 from rest_framework.viewsets import GenericViewSet ,mixins
+from rest_framework.permissions import IsAuthenticated , IsAuthenticatedOrReadOnly
 from apps.users.models import Profile
 from django.db.models import Q
-from apps.api_users.serializers import ProfileSerializer
+from apps.api_users.serializers import ProfileSerializer 
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-class ProfileViewset(GenericViewSet , mixins.RetrieveModelMixin, mixins.ListModelMixin):
+class ProfileViewset(
+     mixins.RetrieveModelMixin, 
+     mixins.ListModelMixin , 
+     GenericViewSet 
+    ):
+    
+    """
+        endpoint of list profiles for update your profile
+        consult url /api/v1/profiles/updateprf
+    """
+
+
+
     queryset = Profile.objects.filter(Q(is_admin=False)&Q(is_cv_porter=False))
-    serializer_class = ProfileSerializer
-   
-    @action(detail=False , methods=['put', 'post' , 'patch'])
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    serializer_class= ProfileSerializer
+    
+        
+    @action(detail=False , methods=['put', 'patch'])
     def updateprf(self , request):
+        
         user = request.user
-        #import pdb; pdb.set_trace()
         profile = Profile.objects.get(user=user)
         patch = request.method=='PATCH'
-        serializer = ProfileSerializer(user, data=request.data , partial = patch)
-        serializer.is_valid()
+        serializer = ProfileSerializer(profile, data=request.data , partial = patch)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+        

@@ -18,7 +18,7 @@ class UserList (GenericViewSet,mixins.ListModelMixin , mixins.RetrieveModelMixin
 
     @action(detail=False , methods=['post'])
     def login(self , request):
-        serializer = UsersLoginSerializer(data= request.data)
+        serializer = UsersLoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user , token = serializer.save()
         data = {
@@ -35,3 +35,4 @@ class UserList (GenericViewSet,mixins.ListModelMixin , mixins.RetrieveModelMixin
         user=serializer.save()
         return Response(UsersSerializer(user).data , 200)
             
+    
