@@ -11,10 +11,14 @@ from apps.api_users.serializers import UsersSerializer , UsersLoginSerializer , 
 from apps.users.models import Users
 
 
-class UserList (GenericViewSet,mixins.ListModelMixin , mixins.RetrieveModelMixin):
+class UserList (GenericViewSet):
     queryset=Users.objects.all()
     serializer_class = UsersSerializer
-    
+    """
+     User endpoint for login and create users
+     login: /api/v1/users/login/
+     signup: /api/v1/users/signup/
+    """
 
     @action(detail=False , methods=['post'])
     def login(self , request):

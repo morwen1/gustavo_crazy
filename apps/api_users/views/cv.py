@@ -1,6 +1,8 @@
 #Django
 from django.utils.decorators import method_decorator 
 from django.views.decorators.cache import cache_page
+from django.db.models import Prefetch
+
 #Models
 from apps.users.models import CV , Skills ,  PersonalRef 
 
@@ -23,6 +25,15 @@ class CViewset(ReadOnlyModelViewSet ):
     """
     queryset = CV.objects.all()
     serializer_class =CvSerializer
+    def get_queryset(self):
+        queryset=super().get_queryset()
+        queryset = queryset.prefetch_related(
+            Prefetch('skills') , 
+            Prefetch('profile') , 
+            Prefetch('personal_ref'),
+            Prefetch('experiences')
+            )
+        return queryset
     @method_decorator(cache_page(60*3))
     @action(detail=True , methods = ['get'])
     def skills (self,request,pk=None):

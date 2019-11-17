@@ -10,7 +10,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 
 
 #Models
-
+from django.db.models import Prefetch
 from apps.api_users.models import CommentSkill 
 
 #Serializers
@@ -56,6 +56,9 @@ class CommentsViewset(
             queryset = CommentSkill.objects.all()
         else : 
             queryset = CommentSkill.objects.filter(reply=False)
+        queryset.prefetch_related(
+            Prefetch('Comments')
+        )
         return queryset
     
     def get_serializer_class(self):
