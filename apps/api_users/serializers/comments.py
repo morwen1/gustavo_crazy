@@ -6,14 +6,21 @@ from rest_framework_recursive.fields import RecursiveField
 from apps.api_users.serializers import ProfileSerializer ,UsersSerializer
 
 #models
-from apps.api_users.models import CommentSkill 
+from apps.api_users.models import CommentSkill , CommentsLikes
 from apps.users.models import Users, Profile ,CV
 
+class CommentsLikesSerializers(serializers.ModelSerializer):
+    user=UsersSerializer(read_only=True )
+    comment = serializers.PrimaryKeyRelatedField(read_only=True)
+    class Meta:
+        model = CommentsLikes
+        fields= '__all__'
 
 
 class CommentsSerializers(serializers.ModelSerializer):
     user_comment=UsersSerializer(read_only=True)
     coments = RecursiveField(many=True , allow_null=True)
+    comment_likes = CommentsLikesSerializers(many=True, read_only=True)
     class Meta:
         model = CommentSkill
         fields = '__all__'
@@ -28,7 +35,7 @@ class CommentsSerializersCreate(serializers.ModelSerializer):
         fields = (
             'user_comment',
             'text', 
-            'likes'
+           
         )
 
 
@@ -39,4 +46,4 @@ class CommentsSerializersCreate(serializers.ModelSerializer):
         
         comment.save()
         return comment
-        
+

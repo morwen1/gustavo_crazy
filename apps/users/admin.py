@@ -9,9 +9,9 @@ admin.site.register(Experiences)
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('id' , 'user' , 'age'  , 'cellphone' ,'is_cv_porter')
+    list_display = ('id' , 'user'   , 'cellphone' ,'is_cv_porter')
     list_display_links = ('id','user')
-    list_editable = ('age' , 'cellphone')
+    list_editable = ( 'cellphone',)
     search_fields=(
         'user__username',
         'user__email',

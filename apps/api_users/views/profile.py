@@ -27,6 +27,7 @@ class ProfileViewset(
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.prefetch_related(Prefetch('user'))
+    
         return queryset
         
     @action(detail=False , methods=['put', 'patch'])

@@ -33,6 +33,8 @@ class UserSignupSerializer(serializers.Serializer):
     password_verif = serializers.CharField(max_length = 255)
     first_name =  serializers.CharField(max_length=255 , required=True)
     last_name = serializers.CharField(max_length=255 , required=True)
+    age = serializers.IntegerField(min_value=8 , max_value=100)
+
     def validate (self , data):
         passwd = data['password']
         password_verif = data['password_verif']
@@ -48,7 +50,7 @@ class UserSignupSerializer(serializers.Serializer):
 
     def create(self , data):
         data.pop('password_verif')
-        age = data.pop('age')
+        age=data.pop('age')
         user = Users.objects.create_user(
             **data,
             is_verified=True
@@ -57,7 +59,7 @@ class UserSignupSerializer(serializers.Serializer):
         Profile.objects.create(user=user,
                 is_cv_porter=False,
                 is_admin=False ,
-                
+                age=age,
                 )
         return user
     
