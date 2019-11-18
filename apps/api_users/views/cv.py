@@ -22,6 +22,15 @@ class CViewset(ReadOnlyModelViewSet ):
     """
         Viewset for my cv list the skills,
         experiencies and personal references
+        only method GET
+        actions:
+            skills:
+                listing the skills of the cv
+                /api/v1/cv/1/skills/
+            repfer:
+                listing personal references
+                /api/v1/cv/1/skills/
+            
     """
     queryset = CV.objects.all()
     serializer_class =CvSerializer
@@ -34,11 +43,15 @@ class CViewset(ReadOnlyModelViewSet ):
             Prefetch('experiences')
             )
         return queryset
+
+
+
     @method_decorator(cache_page(60*3))
     @action(detail=True , methods = ['get'])
     def skills (self,request,pk=None):
         """
             list only the skills relacionado* with one cv
+
         """
         cv = CV.objects.get(id=int(pk))
         skills = cv.skills.all()

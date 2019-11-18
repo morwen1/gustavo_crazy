@@ -12,7 +12,7 @@ class CommentSkill(models.Model):
     cv= models.ForeignKey(to='users.CV' , on_delete=True)
     user_comment = models.ForeignKey(to=Users , on_delete=False)
     coments = models.ManyToManyField(to='api_users.CommentSkill' , blank=True)
-    likes =models.IntegerField(default=0)
+    likes =models.IntegerField(default=0) #todo likes foreing key to users 
     text = models.TextField()
     reply = models.BooleanField(default=False)
     def __str__(self):

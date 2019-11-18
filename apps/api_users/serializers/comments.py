@@ -27,7 +27,8 @@ class CommentsSerializersCreate(serializers.ModelSerializer):
         model = CommentSkill
         fields = (
             'user_comment',
-            'text'
+            'text', 
+            'likes'
         )
 
 

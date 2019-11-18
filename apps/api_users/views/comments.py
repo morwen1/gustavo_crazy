@@ -35,13 +35,23 @@ class CommentsViewset(
         this view is for send comments to my cv ,
         one comment have many comments, 
         params :
-        offset = pagination,
-        filtering
-        ordering
-        retrieve:
-        api/v1/comments/{id}
-        reply:
-        api/v1/comments/{id}/reply/
+            offset = pagination,
+            filtering
+            ordering
+        actions:
+            list:
+                api/v1/comments/
+            
+            retrieve:
+                api/v1/comments/{id}
+            
+            create:
+                method : POST 
+                api/v1/comments/
+
+            reply:
+                method : POST 
+                api/v1/comments/{id}/reply/
 
     """
     
@@ -52,17 +62,21 @@ class CommentsViewset(
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        if self.action =='retrieve':
-            queryset = CommentSkill.objects.all()
-        else : 
+        
+        
+        if self.action == 'list':
             queryset = CommentSkill.objects.filter(reply=False)
+           
+        if self.action in [ 'retrieve','create','reply','update','partial_update']:
+            queryset = CommentSkill.objects.all()
         queryset.prefetch_related(
-            Prefetch('Comments')
-        )
+                Prefetch('Comments')
+            )
+        
         return queryset
     
     def get_serializer_class(self):
-        if self.action != 'list' :
+        if self.action in [ 'create' , 'reply' , 'update', 'partial_update'] :
             return CommentsSerializersCreate
         else :
             return CommentsSerializers
@@ -70,17 +84,31 @@ class CommentsViewset(
     
     @action(detail=True , methods =['post'])
     def reply (self , request , pk=None):
-        
-        serializer = CommentsSerializersCreate(data=request.data , context=self.get_serializer_context())
+        """
+            reply
+                is only for reply comments
+                
+        """
+        partial = request.method == 'PATCH'
+        serializer = CommentsSerializersCreate(
+            data=request.data , 
+            context=self.get_serializer_context() , 
+            partial=partial
+            )
         serializer.is_valid(raise_exception=True)
-        comment = CommentSkill.objects.get(id=int(pk))
         rply = serializer.save()
         rply.reply=True
         rply.save()
+        comment = CommentSkill.objects.get(id=int(pk))
+        
+        
+        dataresponse=CommentsSerializers(rply).data
+        
         comment.coments.add(rply)
-        #import pdb; pdb.set_trace()
         dataresponse=CommentsSerializers(rply).data
         return Response(data=dataresponse ,status= 201)
+        
+
 
     
     def perform_create(self, serializer):

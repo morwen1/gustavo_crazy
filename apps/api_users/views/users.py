@@ -16,8 +16,13 @@ class UserList (GenericViewSet):
     serializer_class = UsersSerializer
     """
      User endpoint for login and create users
-     login: /api/v1/users/login/
-     signup: /api/v1/users/signup/
+     actions:
+        login: 
+            authenticate user registrado*
+            /api/v1/users/login/
+        signup: 
+            create user
+            /api/v1/users/signup/
     """
 
     @action(detail=False , methods=['post'])
