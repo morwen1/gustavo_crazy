@@ -42,20 +42,27 @@ class CommentsViewset(
         offset = pagination,
         filtering
         ordering
-        actions:
+        
             list:
-            api/v1/comments/
+                api/v1/comments/
             
             retrieve:
-            api/v1/comments/{id}
+                api/v1/comments/{id}
             
             create:
                 methods : POST 
                     api/v1/comments/
 
             reply:
-                method : POST , DELETE 
+                methods : POST , DELETE 
                 api/v1/comments/{id}/reply/
+            
+            like:
+                methods: POST, DELETE
+                *no data required*
+                api/v1/comments/{id}/like/
+
+
             
     """
     
@@ -121,7 +128,7 @@ class CommentsViewset(
         return Response(data=dataresponse ,status= 201)
         
     @action(detail=True , methods=['post','delete',])
-    def likes(self, request, pk=None):
+    def like(self, request, pk=None):
         """
              like boton for coments *data is not required*
         """

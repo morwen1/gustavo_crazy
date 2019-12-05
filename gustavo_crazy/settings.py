@@ -41,7 +41,6 @@ DJANGO = [
 LOCAL =[
     'apps.users',
     'apps.api_users',
-    'apps.chat',
 ]
 
 THIRD_PARTY =[

@@ -13,15 +13,21 @@ from apps.users.models import Users
 
 class UserList (GenericViewSet):
     queryset=Users.objects.all()
-    serializer_class = UsersSerializer
+    def get_serializer_class(self):
+        if self.action == 'login':
+            return UsersLoginSerializer
+        if self.action == 'signup':
+            return UserSignupSerializer
+        else :
+            return UserSerializer
     """
      User endpoint for login and create users
-     actions:
+     
         login: 
             authenticate user registrado*
             /api/v1/users/login/
         signup: 
-            create user
+            create new user
             /api/v1/users/signup/
     """
 

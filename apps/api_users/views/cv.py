@@ -23,13 +23,16 @@ class CViewset(ReadOnlyModelViewSet ):
         Viewset for my cv list the skills,
         experiencies and personal references
         only method GET
-        actions:
+        
             skills:
                 listing the skills of the cv
                 /api/v1/cv/1/skills/
+            skills2:
+                skills with ordering and filters and searching
+                /api/v1/cv/1/skills2/
             repfer:
                 listing personal references
-                /api/v1/cv/1/skills/
+                /api/v1/cv/1/repfer/
             
     """
     queryset = CV.objects.all()

@@ -15,7 +15,21 @@ class ProfileViewset(
     
     """
         endpoint of list profiles for update your profile
-        consult url /api/v1/profiles/updateprf
+        
+            list:
+                listing profiles
+                /api/v1/profiles/
+            
+            retrieve:
+
+                /api/v1/profiles/{id}/
+
+
+
+            update profile:
+                
+                updating own profile
+                /api/v1/profiles/updateprf
     """
 
 
